@@ -1,16 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import WelcomeScreen from './app/screens/WelcomeScreen';
-import ViewImageScreen from './app/screens/ViewImageScreen';
-import Login from './app/screens/Login';
-import SignUp from './app/screens/SignUp';
+import { Text, View } from "react-native";
+
 
 export default function App() {
   return (
-    <>
-    {/* <ViewImageScreen/>
-    <Login/> */}
-    <SignUp/>
+      <>
+      <View style={{
+        backgroundColor: "green",
+        flex: 1
+      }}>
+
+        <Text style={{
+          backgroundColor: "red",
+
+          color: "black"
+        }}>
+          hey
+        </Text>
+        </View>
+
     </>
   );
 }
