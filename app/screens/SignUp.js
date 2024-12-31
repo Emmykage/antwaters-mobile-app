@@ -1,4 +1,4 @@
-import { Button, Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Button, Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import colors from '../assets/config/colors'
 import { Formik } from 'formik'
@@ -6,12 +6,46 @@ import { Formik } from 'formik'
 import {Fontisto, Ionicons, Octicons} from "@expo/vector-icons"
 import  DateTimePicker  from '@react-native-community/datetimepicker'
 import styles from '../assets/style/global'
+import axios from 'axios'
 
 const SignUp = ({navigation}) => {
     const [hidePassword, setHidePassword] = useState(true)
     const [show, setShow] = useState(false)
     const [date, setDate] = useState(new Date(2000, 0, 1))
     const [dob, setDob] = useState()
+    const [message, setMessage] = useState({message: "", type: ""})
+
+    const handleSignup = (credentials, setSubmitting) => {
+        // Start the API call
+        handleMessage(null)
+        axios.post(baseUrl, credentials)
+          .then((res) => {
+            const { data, message } = res.data;
+      
+            // Handle successful response
+            handleMessage(message, "SUCCESS");
+            navigation.navigate("welcome", { data });
+            setSubmitting(false)
+          })
+          .catch((error) => {
+            console.error(error);
+            setSubmitting(false)
+  
+            // Handle error response
+            if (error.response) {
+              handleMessage(error.response.data.message, "FAILED");
+            } else {
+              handleMessage("Something went wrong", "FAILED");
+            }
+          });
+      };
+
+         
+    const handleMessage = (message, type="FAILED") => {
+        setMessage({message, type})
+      }
+      
+      
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date
@@ -49,9 +83,19 @@ const SignUp = ({navigation}) => {
           
                 <Formik
                     initialValues={{fullName: "", dateOfBirth: "", confirmPassword: "",  email: "", password: ""}}
-                    onSubmit={() => {
-                        navigation.navigate("Welcome")
+                    onSubmit={(values, {setSubmitting}) => {
+                        values = {...values, dob}
+                        if(values.email == "" || values.password == "" || values.fullName ==="" || values.confirmPassword || values.dateOfBirth){
+                            handleMessage("please fill all fields")
+                            setSubmitting(false)
+                          }else if(values.confirmPassword !== values.password){
+                            handleMessage("passwords do not match", "FAILED")
+                            setSubmitting(false)
 
+                          }
+                          else{
+                            handleSignup(values, setSubmitting)            
+                          }
                     }}>
 
                         {({handleChange, handleBlur, handleSubmit, values})=> 
@@ -114,13 +158,19 @@ const SignUp = ({navigation}) => {
                             hidePassword={hidePassword}
                             setHidePassword={setHidePassword}
                             />
-                            <Text style={styles.msgBox}>... </Text>
+                            <Text style={[styles.msgBox, message.type == "SUCCESS" ? styles.msgBoxSuccess : styles.msgBoxError]}>{message.message}</Text>
 
-                            <TouchableOpacity style={styles.button}>
+                            {/* <TouchableOpacity style={styles.button}>
                                 <Text style={styles.buttonText} onPress={handleSubmit}>
                                     Sign up
                                 </Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
+                            { !isSubmitting && <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                                <Text style={styles.buttonText}> Sign up</Text>
+                                </TouchableOpacity>}      
+                                { isSubmitting && <TouchableOpacity style={styles.button} disabled={true}>
+                                <ActivityIndicator size={"large"}/>
+                                </TouchableOpacity>}
                             <View style={styles.line}/>
                         
                             <View style={styles.extraView}>

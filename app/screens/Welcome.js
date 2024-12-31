@@ -3,7 +3,8 @@ import React from 'react'
 import styles from '../assets/style/global'
 
 
-const Welcome = ({navigation}) => {
+const Welcome = ({navigation, route}) => {
+    const {name, email} =  route.params
 
     return (
     <View style={styles.welcomeContainer}>
@@ -13,8 +14,8 @@ const Welcome = ({navigation}) => {
                 <View style={{justifyContent: "center", alignItems: "center"}}>
                     <Image style={styles.welcomeImage} resizeMode='cover' source={require("../assets/logo.png")}/>
                     <Text  style={{textAlign: 'center', fontSize: 40}}> Welcome Buddy</Text>
-                    <Text style={[styles.subTitle, styles.welcomePageTitle]}> Olga Simpson </Text>
-                    <Text style={[styles.subTitle, styles.welcomePageTitle]}> emmiemenz@gmail,com </Text>
+                    <Text style={[styles.subTitle, styles.welcomePageTitle]}> {name || "Jon Doe"}</Text>
+                    <Text style={[styles.subTitle, styles.welcomePageTitle]}>{email || " emmiemenz@gmail,com "}</Text>
 
 
                         <View style={styles.formArea}>

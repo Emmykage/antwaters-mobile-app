@@ -86,6 +86,12 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontSize: 13,
     },
+    msgBoxSuccess: {     
+      color: "green"
+    }, 
+    msgBoxError: {     
+      color: "red"
+    },
     line: {
       height: 1,
       width: '100%',

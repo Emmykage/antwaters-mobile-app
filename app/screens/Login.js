@@ -1,14 +1,47 @@
 import React, { useState } from 'react';
-import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import colors from '../assets/config/colors';
 import { Formik } from 'formik';
 import { Fontisto, Ionicons, Octicons } from '@expo/vector-icons';
 import styles from '../assets/style/global';
 import KeyboardAvoidWrapper from '../components/keyboardAvoidWrapper/KeyboardAvoidWrapper';
+import axios from 'axios';
+import { baseUrl } from '../api/baseUrl';
 
 const Login = ({navigation}) => {
     const [hidePassword, setHidePassword] = useState(true);
-  
+    const [message, setMessage] = useState({message: "", type: ""})
+
+    const handleLogin = (credentials, setSubmitting) => {
+      // Start the API call
+      handleMessage(null)
+      axios.post(baseUrl, credentials)
+        .then((res) => {
+          const { data, message } = res.data;
+    
+          // Handle successful response
+          handleMessage(message, "SUCCESS");
+          navigation.navigate("welcome", { data });
+          setSubmitting(false)
+        })
+        .catch((error) => {
+          console.error(error);
+          setSubmitting(false)
+
+          // Handle error response
+          if (error.response) {
+            handleMessage(error.response.data.message, "FAILED");
+          } else {
+            handleMessage("Something went wrong", "FAILED");
+          }
+        });
+    };
+    
+    
+    
+    const handleMessage = (message, type="FAILED") => {
+      setMessage({message, type})
+    }
     return (
       <KeyboardAvoidWrapper>
   
@@ -21,13 +54,21 @@ const Login = ({navigation}) => {
           <Text style={styles.subTitle}>Account Login</Text>
           <Formik
             initialValues={{ email: '', password: '' }}
-            onSubmit={(values) =>{
-              console.log(values)
-              navigation.navigate("Welcome")
+            onSubmit={(values, {setSubmitting}) =>{
+
+              if(values.email == "" || values.password == ""){
+                handleMessage("please fill all fields")
+                setSubmitting(false)
+              }else{
+                handleLogin(values, setSubmitting)
+              // navigation.navigate("Welcome")
+
+              }
+              // console.log(values)
           
             }}
           >
-            {({ handleChange, handleBlur, handleSubmit, values }) => (
+            {({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
               <View  style={styles.formArea}>
                 <MyTextInput
                   label="Email Address"
@@ -52,11 +93,14 @@ const Login = ({navigation}) => {
                   hidePassword={hidePassword}
                   setHidePassword={setHidePassword}
                 />
-                <Text style={styles.msgBox}>...</Text>
+                <Text style={[styles.msgBox, message.type == "SUCCESS" ? styles.msgBoxSuccess : styles.msgBoxError]}>{message.message}</Text>
   
-                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                { !isSubmitting && <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                   <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}      
+                { isSubmitting && <TouchableOpacity style={styles.button} disabled={true}>
+                  <ActivityIndicator size={"large"}/>
+                </TouchableOpacity>}
                 <View style={styles.line} />
                 <TouchableOpacity style={[styles.button, styles.buttonGoogle]}>
                   <Fontisto name="google" color={colors.primary} size={25} />
