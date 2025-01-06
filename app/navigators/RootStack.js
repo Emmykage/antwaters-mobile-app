@@ -5,6 +5,7 @@ import SignUp from '../screens/SignUp'
 import Login from '../screens/Login'
 import Welcome from '../screens/Welcome'
 import colors from '../assets/config/colors'
+import Dashboard from '../screens/Dashboard'
 
 const RootStack = () => {
     const Stack = createStackNavigator()
@@ -26,6 +27,7 @@ const RootStack = () => {
 >
             <Stack.Screen name="Login" component={Login}/>
             <Stack.Screen name="Signup" component={SignUp}/>
+            <Stack.Screen name="Dashboard" component={Dashboard}/>
             <Stack.Screen options={{headerTintColor: colors.primary}} name="Welcome" component={Welcome}/>
             </Stack.Navigator>
 

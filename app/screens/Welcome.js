@@ -4,6 +4,7 @@ import styles from '../assets/style/global'
 
 
 const Welcome = ({navigation, route}) => {
+    console.log(route)
     const {name, email} =  route.params
 
     return (
