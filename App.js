@@ -4,14 +4,34 @@ import SignUp from "./app/screens/SignUp";
 import Welcome from "./app/screens/Welcome";
 import RootStack from "./app/navigators/RootStack";
 import Dashboard from "./app/screens/Dashboard";
+import * as Font from "expo-font"
+import { useState } from "react";
+import {AppLoading} from "expo"
 
-
+const getFonts = () => {
+  return Font.loadAsync({
+    "poppins-bold": require('./app/assets/fonts/Poppins-Bold.ttf'),
+    // "poppins-regular": require('./app/assets/fonts/Poppins-Regular.tff')
+  })
+}
 export default function App() {
-  return (
+  // const [fontLoaded, setFontLoaded] = useState(false)
+  // if(fontLoaded){
+    return (
       <>
 
     {/* <RootStack/> */}
     <Dashboard/>
     </>
   );
-}
+  // }else{
+  //   return(
+  //     <AppLoading
+  //     startAsync={getFonts}
+  //     onfinish={()=> setFontLoaded(true)}
+  //     />
+  //   )
+
+  }
+ 
+// }

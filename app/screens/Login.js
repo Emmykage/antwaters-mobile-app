@@ -60,8 +60,8 @@ const Login = ({navigation}) => {
                 handleMessage("please fill all fields")
                 setSubmitting(false)
               }else{
-                // handleLogin(values, setSubmitting)
-              navigation.navigate("Dashboard", {name: "morris menanya", email: "emmiemenz@gmail.com"})
+                handleLogin(values, setSubmitting)
+              // navigation.navigate("Dashboard", {name: "morris menanya", email: "emmiemenz@gmail.com"})
 
               }
               // console.log(values)
