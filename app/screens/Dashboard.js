@@ -6,14 +6,12 @@ import colors from '../assets/config/colors'
 const Dashboard = ({navigation}) => {
   return (
     <View style={globalStyles.container}>
-        <View style={styles.userContent}>
+      <View style={styles.userContent}>
             <View>
                 <Text style={styles.userInfo}>Hi Morris</Text>
                 <Text style={styles.userSubInfo}>How are you feeling today?</Text>
             </View>
-            {/* <View>
-               Notice
-            </View>        */}
+         
         </View>
 
 
@@ -45,20 +43,22 @@ const Dashboard = ({navigation}) => {
         </View>
       </View>
 
+
       <View style={styles.listContainer}>
-      <View style={styles.list}>
-          <View style={[styles.iconWrapper, styles.iconWrapperDarkGreen]}>
-            <AntDesign  name="calendar" size={36} alignItems="center"  color="white" />            
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.listHeader}>Book an Appointment</Text>
-            <Text style={styles.listText}>Find a Doctor</Text>
-          </View>
-          <View style={{width: 20}}>
-            <AntDesign name="right" size={24} color="black" />
-          </View>
-             
-        </View> <View style={styles.list}>
+        <View style={styles.list}>
+            <View style={[styles.iconWrapper, styles.iconWrapperDarkGreen]}>
+              <AntDesign  name="calendar" size={36} alignItems="center"  color="white" />            
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={styles.listHeader}>Book an Appointment</Text>
+              <Text style={styles.listText}>Find a Doctor</Text>
+            </View>
+            <View style={{width: 20}}>
+              <AntDesign name="right" size={24} color="black" />
+            </View>
+              
+        </View> 
+        <View style={styles.list}>
           <View style={[styles.iconWrapper, styles.iconWrapperPink]}>
             <Entypo name="chat" size={36} color="#119ABC" />
           </View>
@@ -99,17 +99,21 @@ const Dashboard = ({navigation}) => {
         </View>
         
       </View>
+
+
+
       <View>
         <Text style={styles.appointmentContainerHeader}>Upcoming Appointments</Text>
         <View style={styles.appointmentContainer}>
           <Image resizeMode='cover' style={styles.avatar}  source={require("../assets/images/provider-image.png")} />
           <View>
-          <Text style={{color: "#969696"}}>Video Consultation</Text>
+          <Text style={{color: "#969696", fontWeight: "500"}}>Video Consultation</Text>
           <Text style={{fontWeight: "700",  marginTop: 10, marginBottom: 10}}>Dr.Chinedu Achebe</Text>
-          <Text style={{color: "#8c8c8c"}}>Thursday 29th October, 2:30pm  (45 minutes)</Text>
+          <Text style={{color: "#8c8c8c", fontWeight: "600"}}>Thursday 29th October, 2:30pm  (45 minutes)</Text>
           </View>
         </View>
-      </View>
+      </View>        
+
     </View>
   )
 }
@@ -189,7 +193,9 @@ const styles = StyleSheet.create({
   },
   userSubInfo: {
     fontSize: 16,
-    fontWeight: "400"
+    fontWeight: "500",
+    color: "gray",
+    // fontFamily: " "
   },
     card: {
       padding: 29,
