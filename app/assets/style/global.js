@@ -161,7 +161,8 @@ const styles = StyleSheet.create({
 
     statusbar: {
       color: colors.darklight,
-    },
+    }
+
     
     // buttonGoogle: {
     //   backgroundColor: colors.green,

@@ -6,7 +6,11 @@ export default {
     brand: "#6028",
     green: "#108991",
     red: "#ef4444",
+    textGray: "#9A9A9A",
+    textDark: "#4A4848",
+    skyBlue: "#EBFCFF"    
     }
+    
     // export default {
     //     primary: "#fc5c65",
     //     secondary: "#4ecdc4",
