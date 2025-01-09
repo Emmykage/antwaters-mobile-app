@@ -8,6 +8,8 @@ export default {
     red: "#ef4444",
     textGray: "#9A9A9A",
     textDark: "#4A4848",
+    gray: "#9A9A9A",
+    dark: "#4A4848",
     skyBlue: "#EBFCFF"    
     }
     

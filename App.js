@@ -8,6 +8,7 @@ import * as Font from "expo-font"
 import { useState } from "react";
 import {AppLoading} from "expo"
 import Activity from "./app/screens/Activity";
+import BookAppointment from "./app/screens/BookAppointment";
 
 const getFonts = () => {
   return Font.loadAsync({
@@ -23,7 +24,8 @@ export default function App() {
 
     {/* <RootStack/> */}
     {/* <Dashboard/> */}
-    <Activity/>
+    {/* <Activity/> */}
+    <BookAppointment/>
     </>
   );
   // }else{
