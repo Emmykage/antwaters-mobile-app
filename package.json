@@ -17,6 +17,7 @@
     "axios": "^1.7.9",
     "expo": "~52.0.20",
     "expo-constants": "^17.0.3",
+    "expo-font": "^13.0.2",
     "expo-status-bar": "~2.0.0",
     "formik": "^2.4.6",
     "nativewind": "^4.1.23",

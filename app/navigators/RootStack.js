@@ -6,6 +6,8 @@ import Login from '../screens/Login'
 import Welcome from '../screens/Welcome'
 import colors from '../assets/config/colors'
 import Dashboard from '../screens/Dashboard'
+import Activity from '../screens/Activity'
+import BookAppointment from '../screens/BookAppointment'
 
 const RootStack = () => {
     const Stack = createStackNavigator()
@@ -29,6 +31,9 @@ const RootStack = () => {
             <Stack.Screen name="Signup" component={SignUp}/>
             <Stack.Screen name="Dashboard" component={Dashboard}/>
             <Stack.Screen options={{headerTintColor: colors.primary}} name="Welcome" component={Welcome}/>
+            <Stack.Screen name="Activity" component={Activity}/>
+            <Stack.Screen name="BookAppointment" component={BookAppointment}/>
+
             </Stack.Navigator>
 
     </NavigationContainer>

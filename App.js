@@ -1,41 +1,50 @@
 import { Text, View } from "react-native";
-import Login from "./app/screens/Login";
-import SignUp from "./app/screens/SignUp";
-import Welcome from "./app/screens/Welcome";
 import RootStack from "./app/navigators/RootStack";
-import Dashboard from "./app/screens/Dashboard";
 import * as Font from "expo-font"
-import { useState } from "react";
-import {AppLoading} from "expo"
-import Activity from "./app/screens/Activity";
-import BookAppointment from "./app/screens/BookAppointment";
+import { useEffect, useState } from "react";
 
-const getFonts = () => {
-  return Font.loadAsync({
-    "poppins-bold": require('./app/assets/fonts/Poppins-Bold.ttf'),
-    // "poppins-regular": require('./app/assets/fonts/Poppins-Regular.tff')
-  })
-}
+
+
 export default function App() {
-  // const [fontLoaded, setFontLoaded] = useState(false)
-  // if(fontLoaded){
+  const [fontLoaded, setFontLoaded] = useState(false)
+
+  useEffect(()=> {
+  (async() => {
+     await Font.loadAsync({
+        "poppins-bold": require('./app/assets/fonts/Poppins-Bold.ttf'),
+        "poppins-regular": require('./app/assets/fonts/Poppins-Regular.ttf')
+      })
+      setFontLoaded(true)
+
+      Text.defaultProps = {
+        ...(Text.defaultProps || {}),
+        style: {
+          ...(Text.defaultProps?.style || {}),
+          fontFamily: "poppins-regular",
+        },
+      };
+
+
+    })()
+  },[])
+
+  console.log(fontLoaded)
+  if(!fontLoaded){
+    return(
+      <View style={{paddingTop: 200}}>
+      <Text>Loading...</Text>
+    </View>
+    )
+
+
+  }
+
     return (
       <>
 
-    {/* <RootStack/> */}
-    {/* <Dashboard/> */}
-    {/* <Activity/> */}
-    <BookAppointment/>
+    <RootStack/> 
+
     </>
   );
-  // }else{
-  //   return(
-  //     <AppLoading
-  //     startAsync={getFonts}
-  //     onfinish={()=> setFontLoaded(true)}
-  //     />
-  //   )
-
-  }
  
-// }
+}

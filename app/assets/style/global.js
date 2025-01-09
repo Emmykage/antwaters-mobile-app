@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 25,
       backgroundColor: 'white',
+      overflow: "visible",
       paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight + 30 : 40,
     },
     inncontainer: {
