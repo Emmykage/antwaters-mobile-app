@@ -2,6 +2,8 @@ import { Text, View } from "react-native";
 import RootStack from "./app/navigators/RootStack";
 import * as Font from "expo-font"
 import { useEffect, useState } from "react";
+import ActivityOptions from "./app/screens/ActivityOptions";
+import AppointmentOverview from "./app/screens/AppointmentOverview";
 
 
 
@@ -41,8 +43,9 @@ export default function App() {
 
     return (
       <>
-
-    <RootStack/> 
+      {/* <ActivityOptions/> */}
+      <AppointmentOverview/>
+    {/* <RootStack/>  */}
 
     </>
   );

@@ -1,7 +1,7 @@
 import { StatusBar, StyleSheet } from "react-native";
 import colors from "../config/colors";
 
-const styles = StyleSheet.create({
+const globalStyles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 25,
@@ -210,4 +210,4 @@ const styles = StyleSheet.create({
   });
 
 
-  export default styles
+  export default globalStyles

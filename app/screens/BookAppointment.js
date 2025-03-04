@@ -231,12 +231,6 @@ const styles = StyleSheet.create({
     ,
     iconImage: {
         padding: 15,
-        borderRadius: 50,
-        // fontSize: 40,
-        // width: 80,
-        // height: 80,
-        // justifyContent: 'center',
-        // alignItems: "center"
-
+        borderRadius: 50
     }
 })
